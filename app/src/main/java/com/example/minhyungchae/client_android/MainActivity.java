@@ -1,8 +1,11 @@
 package com.example.minhyungchae.client_android;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.drm.DrmStore;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -12,6 +15,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -141,21 +146,28 @@ public class MainActivity extends AppCompatActivity {
                     final String msg=dis.readUTF();
                     // 화면에 출력
                     runOnUiThread(new Runnable() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
                         @Override
                         public void run() {
                             // 텍스트뷰의 객체를 생성
                             TextView tv=new TextView(MainActivity.this);
-                            tv.setTextColor(Color.BLACK);
                             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
+
                             // 메세지의 시작 이름이 내 닉네임과 일치한다면
                             if(msg.startsWith(user_nickname)){
                                 //tv.setBackgroundResource(R.drawable.me);
+                                tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                                tv.setTextColor(Color.RED);
                             }
                             else{
                                 //tv.setBackgroundResource(R.drawable.you);
+                                tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                                tv.setTextColor(Color.BLACK);
                             }
+
                             tv.setText(msg);
                             container.addView(tv);
+
                             // 제일 하단으로 스크롤 한다
                             scroll.fullScroll(View.FOCUS_DOWN);
 
