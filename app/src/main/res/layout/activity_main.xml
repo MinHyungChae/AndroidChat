@@ -7,6 +7,45 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/musicURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="음악 url 입력"
+        />
+
+        <Button
+            android:id="@+id/musicUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload" />
+
+        /*
+        btnMethod 수정하기 -> 각 상황에 맞는 action 으로 동작.
+        */
+
+        <Button
+            android:id="@+id/muslicList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnMethod"
+            android:text="list" />
+
+        <Button
+            android:id="@+id/musicPause"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="btnMethod"
+            android:text="♬" />
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
